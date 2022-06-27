@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="deskbord2.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .link a:hover {
+            color: rgb(2, 2, 71);
+        }
+
+        .card-content .revenue:hover {
+
+            box-shadow: 4px 4px 4px darkgoldenrod;
+
+
+        }
+
+
+
+
+
+        .card-single:hover {
+            transform: translate(0, -8px);
+        }
+
+        .drop-item .dropdown-toggle {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+        .drop-content {
+            box-shadow: 0 50px 50px rgb(0, 0, 0, .10);
+            transform: translateY(50px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .drop-item .drop-content::before {
+
+            position: absolute;
+            left: 89%;
+            top: -7px;
+
+            width: 14px;
+            height: 14px;
+            transform: translate(50%) rotate(45deg);
+        }
+
+        /* .main-content {
+            width: calc(100% - 240px);
+        } */
+
+        #sidebar-toggle:checked~.main-content {
+            margin-left: 60px;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main {
+            width: auto;
+        }
+
+        #sidebar-toggle:checked~.main-content .card-body {
+
+            width: 100%;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main-content header {
+            left: 60px;
+            width: 97%;
+        }
+
+        header {
+            transition: 500ms;
+        }
+
+
+
+        .main-content {
+            transition: margin-left 500ms;
+
+        }
+
+
+
+        .sidebar {
+            transition: width 500ms;
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* #sidebar-toggle:checked~ main .card-single {
+            height: 100%;
+        } */
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header .brand span {
+            position: relative;
+        }
+
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-menu ul li a {
+
+            justify-content: left;
+            margin-left: 20px;
+        }
+
+        #sidebar-toggle:checked~.main-content main .card-single {
+            display: flex;
+        }
+
+        .sidebar .sidebar-header h2,
+        .sidebar li span:last-child {
+            display: none;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header h2,
+        #sidebar-toggle:checked~.sidebar li span:last-child {
+            display: block;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header h2 span,
+        #sidebar-toggle:checked~.sidebar li a:last-child {
+            margin-left: 0;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header,
+        #sidebar-toggle:checked~.sidebar li {
+            display: flex;
+
+
+
+        }
+
+        #sidebar-toggle:checked~.card-body i h5 h4 a {
+            padding-left: 5rem;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        /* allcustoer */
+
+        .search-btn input:hover {
+            color: rgb(2, 2, 71);
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="sidebar-toggle" class="">
+    <div style="background:rgb(2, 2, 71); z-index: 1000;"
+        class="sidebar text-white  h-[100%] w-[70px] fixed left-0 top-0 z-50   || xl:h-[100%] xl:w-[80px] xl:fixed xl:left-0 xl:top-0    xl:overflow-y-auto ">
+        <div class="sidebar-header  block h-[60px] p-[1rem] ||  xl:h-[60px] xl:p-[1rem] ">
+
+            <label for="sidebar-toggle" class="ti-menu-alt cursor-pointer   ">
+                <i class="fa-solid fa-bars text-2xl ml-2 xl:ml-3 hover:text-amber-500 "></i>
+            </label>
+            <!-- <h2 class="brand relative xl:pt-8">
+                <span class="text-2xl font-bold">SultanMobile</span>
+            </h2> -->
+
+        </div>
+
+        <div style="transition: 500ms;" class="sidebar-menu  ">
+            <ul>
+                <li
+                    class=" mb-[1rem]  py-2 || xl:mb-[1rem] items-center  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="deskbord2"
+                        class="ml-5 text-lg font-semibold hover:font-semibold flex  items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-home  text-2xl pr-[.5rem] hover:font-semibold || xl:pr-[.6rem]"></i>
+                        <span class=""> Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="allcustomer" class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-users  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="#" class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-history  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="about"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-user  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="contect"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-phone  text-2xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="#" class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-brands fa-whatsapp  text-3xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Whatsapp</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="form1"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-plus  h text-4xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Add New</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content ml-[75px] ||  xl:ml-[80px]">
+        <header
+            class=" fixed top-0 z-50   bg-white h-[60px] flex items-center justify-between pr-[1rem] pl-[1rem] left-[70px] border border-b-2 border-b-black w-[85%] || md:left-[190px]  md:w-[77%]
+            || xl:top-0 xl:z-50  xl:w-[95%] xl:bg-white xl:h-[60px] xl:flex xl:items-center xl:justify-between xl:pr-[1rem] xl:pl-[1rem] xl:left-[80px] xl:border xl:border-b-2 xl:border-b-black">
+
+            <a href="allcustomer">
+                <h2 style="color:rgb(2, 2, 71);"
+                    class="deskbord-tital text-center text-xl font-bold  || xl:text-left  xl:text-4xl">All Customers
+                </h2>
+            </a>
+
+            <div class="social-icon flex items-center space-x-2  || md:mr-0 || xl:space-x-5 xl:mr-0 ">
+                <i class="fa-solid fa-bell cursor-pointer text-xl  "></i>
+                <i class="fa-solid fa-message cursor-pointer text-xl "></i>
+                <div class="drop-item xl:flex xl:justify-center xl:items-center xl:flex-col ">
+                    <div class="img" onclick="MyFunction()">
+                        <img src="shad.png" alt=""
+                            class=" cursor-pointer border-0 border-black w-[50px] h-[50px] object-cover rounded-full || md:w-[40px] md:h-[40px] md:object-cover md:rounded-full  || xl:w-[50px] xl:h-[50px] xl:object-cover xl:rounded-full">
+
+                    </div>
+
+                    <div style="background:rgb(2, 2, 71);"
+                        class="drop-content rounded-md    absolute  top-[45px]  right-[3.5rem] pt-[10px] pb-[10px] pl-[15px] pr-[15px]  mt-[20px]  || xl:pt-[10px] xl:pb-[10px] xl:pl-[15px] xl:pr-[15px]  xl:mt-[20px] xl:top-[45px] xl:right-[1.5rem]  before:absolute before:left-[45%] before:top-[-6px]  before:w-[12px] ">
+                        <div class="NAME font-bold text-white mb-3 mt-3">
+                            <P>RAJPUT MOHAMMADSHAD</P>
+                        </div>
+
+
+                        <ul class="link  ">
+                            <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  ">
+                                <a href="#" class="text-white   ml-5 font-semibold  py-1 "><i
+                                        class="fa-solid fa-user  inline-block  w-[20px] mr-[5px]">
+                                    </i> My Profile</a>
+                            </li>
+                            <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                    class="text-white   ml-5 font-semibold  py-1 "><i
+                                        class="fa-solid fa-pen-to-square inline-block  w-[20px] mr-[5px]"></i>Edit
+                                    Profile</a></li>
+                            <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+                            <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="fpass.html"
+                                    class="text-white   ml-5 font-semibold  py-1 "> <i
+                                        class="fa-solid fa-lock inline-block  w-[20px] mr-[5px]"></i>Change Password</a>
+                            </li>
+                            <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                    class="text-white   ml-5 font-semibold  py-1 "> <i
+                                        class="fa-solid fa-user-gear inline-block  w-[20px] mr-[5px]"></i>Settings</a>
+                            </li>
+                            <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+
+                            <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="login.html"
+                                    class="text-white   ml-5 font-semibold  py-1 "><i
+                                        class="fa-solid fa-right-from-bracket inline-block  w-[20px] mr-[5px]"></i>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="    p-0  p pr-0  || xl:mt-[60px] xl:min-h-[90vh] xl:p-[1rem] xl:pl-[2rem] xl:pr-[2rem] ">
+
+            <div class="main-header mt-[5rem] ml-[.5rem] mr-[.8rem] xl:mt-0 xl:mr-0 xl:ml-0">
+                
+                <div style="background:rgb(2,2,71) ;"
+                 class="main-header rounded-md space-y-3  xl:h-[150px] xl:flex items-center justify-start   xl:space-x-11">
+                    
+                 <form action="/search">
+                    <div style="background:rgb(2,2,71) ;"
+                        class="main-header space-y-3  xl:h-[110px] xl:flex items-center justify-between xl:pl-[2rem] xl:pr-[2rem]   xl:space-x-11">
+
+                        <div
+                            class="search-wrapper flex justify-start pl-[1rem] pt-[1rem] items-center space-x-3 ||  xl:space-x-3  xl:pl-0 xl:pt-0  ">
+                            <i class="fa-solid fa-search xl:text-2xl text-amber-500"></i>
+                            <input type="search"
+                                class=" pl-[.5rem] h-[30px] w-[200px] border rounded-md text-lg  || xl:text-base  xl:pl-[1rem] xl:h-[40px] xl:w-[350px] xl:py-6  "
+                                name="number" id="number" placeholder="Enter Mobile Number">
+
+                        </div>
+                       
+                       
+                      
+
+                        <div class="search-btn py-2 pb-6 text-center xl:flex xl:justify-end  xl:py-5  xl:pt-0    ">
+                            <div class="xl:space-x-10 transition-all hover:scale-110 duration-300">
+                                <input type="submit"
+                                    class=" f1-btn  text-amber-500 cursor-pointer font-bold border-2 transform  relative px-8  xl:px-20 py-[6px] rounded-full  hover:border-2  hover:bg-amber-500 text-lg"
+                                    placeholder="Search" value="search">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+    
+                    
+                </div>
+            </div>
+           
+
+
+            <section
+            class="recent block  mt-[0rem] ml-[1rem] mr-[1rem] || xl:flex xl:mt-[1rem] xl:mb-[3rem] xl:ml-0 xl:mr-0 xl:w-[100%]">
+
+            <div class="activity-grid xl:grid xl:grid-cols-2  ">
+
+                <div class=" activity-card w-[100%] mt-[1rem]  xl:w-[200%] h-[800px] overflow-y-scroll ">
+
+                    <table class="w-[1600px] text-left overflow-scroll   border-collapse">
+                        <thead style="color: rgb(2, 2, 71);" class="bg-slate-100 text-center text-lg p-[10px]">
+                            <tr class="overflow-y-scroll border-r ">
+                                <th class="w-[200px] h-[50px]">S.NO</th>
+                                <th class="w-[200px] h-[50px]">PHOTO</th>
+                                <th class="w-[200px] h-[50px]">FULL NAME</th>
+                                <th class="w-[200px] h-[50px]">PHONE</th>
+                                <th class="w-[200px] h-[50px]">DATE</th>
+                                <th class="w-[200px] h-[50px]">INVOICE NO</th>
+                                <th class="w-[200px] h-[50px]">MODAL NAME</th>
+                                <th class="w-[200px] h-[50px]">FULL PRICE</th>
+                                <th class="w-[200px] h-[50px]">FINAL PRICE</th>
+                                <th class="w-[200px] h-[50px]">PENDING</th>
+                                <th class="w-[200px] h-[50px]">PAIDUP</th>
+                                <th class="w-[200px] h-[50px]">STATUS</th>
+                                <th class="w-[200px] h-[50px]">ACTION</th>
+                                <!-- <th class="w-[200px] h-[50px]">EDIT</th> -->
+
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+
+                            <% if(data.length> 0){ %>
+                                <% for(var i=0; i<data.length; i++) { %>
+                                    <tr class="  border-b border-black font-semibold">
+
+
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].id %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].cphoto%>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].fname %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data.number %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].fddate %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].inumber %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].moname %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].pamount %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].finalamount %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">
+                                            <%= data[i].fdown %>
+                                        </td>
+                                        <td class="w-[200PX] h-[40px] text-center">5000</td>
+                                        <td class="w-[200PX] h-[40px] text-center space-x-5">
+                                            <div>
+                                                <h3 class=" text-red-500  font-bold py-1  rounded-md">Pending</h3>
+                                            </div>
+                                        </td>
+
+
+
+                                        <td class="w-[200PX] h-[40px]   ">
+                                            <div class="action class flex">
+
+                                                <button onclick="edit(<%= data[i].id %>)"
+                                                    style="background:rgb(2,2,71) ;"
+                                                    class="edit-btn text-amber-500 cursor-pointer ml-[1rem] px-[.5rem] py-[.3rem] rounded-md  font-bold hover:bg-amber-500 "><i
+                                                        class="fa-solid fa-pen-to-square"></i></button>
+
+
+                                                <button onclick="add(<%= data[i].id %>)"
+                                                    style="background:rgb(2,2,71) ;"
+                                                    class="edit-btn text-amber-500 cursor-pointer ml-[1rem] px-[.5rem] py-[.3rem] rounded-md  font-bold hover:bg-amber-500 "><i
+                                                        class="fa-solid fa-plus"></i></button>
+                                                <!-- <a href="/edit_customer"><button style="color:rgb(2,2,71) ;"
+                                                    class="edit-btn bg-amber-600 ml-[1rem] px-2 py-[.1rem] rounded-md  font-bold hover:bg-amber-500 ">Edit</button></a>--->
+                                            </div>
+                                        </td>
+
+
+
+                                    </tr>
+                                    <% } %>
+                                        <%}else{%>
+
+                                            <tr>
+                                                <td>Data Not Found</td>
+                                            </tr>
+
+                                            <%}%>
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+             
+            </div>
+
+
+
+        </section>
+        </main>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+
+        function showmenu() {
+            $('#menu').css({ "left": "0", "width": "270px" });
+        }
+        $('document').ready(function () {
+
+            $('#close-btn').click(function () {
+                $('#menu').css("left", "-272px");
+            })
+
+        })
+
+        function MyFunction() {
+            var dropcontent = document.querySelector('.drop-content');
+            dropcontent.classList.toggle('dropdown-toggle');
+        }
+
+
+        function add(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: " Are You Want one more product!!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  window.location = "/add/"+id;
+                }
+            })
+        }
+
+        function edit(id) {
+            Swal.fire({
+                 title: 'Are you sure?',
+                text: " Are you want edit!!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                    window.location = "/edit/"+id;
+                }
+            })
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

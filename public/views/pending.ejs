@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="pending.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .link a:hover {
+            color: rgb(2, 2, 71);
+        }
+
+        .card-content .revenue:hover {
+
+            box-shadow: 4px 4px 4px darkgoldenrod;
+
+
+        }
+
+
+
+
+
+        .card-single:hover {
+            transform: translate(0, -8px);
+        }
+
+        .drop-item .dropdown-toggle {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+        .drop-content {
+            box-shadow: 0 50px 50px rgb(0, 0, 0, .10);
+            transform: translateY(50px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .drop-item .drop-content::before {
+
+            position: absolute;
+            left: 89%;
+            top: -7px;
+
+            width: 14px;
+            height: 14px;
+            transform: translate(50%) rotate(45deg);
+        }
+
+        /* .main-content {
+            width: calc(100% - 240px);
+        } */
+
+        #sidebar-toggle:checked~.main-content {
+            margin-left: 60px;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main {
+            width: auto;
+        }
+
+        #sidebar-toggle:checked~.main-content .card-body {
+
+            width: 100%;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main-content header {
+            left: 220px;
+            width: 85.9%;
+        }
+
+        header {
+            transition: 500ms;
+        }
+
+
+
+        .main-content {
+            transition: margin-left 500ms;
+
+        }
+
+
+
+        .sidebar {
+            transition: width 500ms;
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* #sidebar-toggle:checked~ main .card-single {
+            height: 100%;
+        } */
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header img {
+                display: none;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header .brand span {
+            position: relative;
+        }
+
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-menu ul li a {
+
+            
+            justify-content: left;
+            margin-left: 20px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header  {
+            justify-content: left;
+            margin-left: 10px;
+            margin-top: 1rem;
+        }
+
+        #sidebar-toggle:checked~.main-content main .card-single {
+            display: flex;
+        }
+
+        .sidebar .sidebar-header p,
+        .sidebar li span:last-child {
+            display: none;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header p,
+        #sidebar-toggle:checked~.sidebar li span:last-child {
+            display: block;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header h2 span,
+        #sidebar-toggle:checked~.sidebar li a:last-child {
+            margin-left: 0;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header,
+        #sidebar-toggle:checked~.sidebar li {
+            display: flex;
+
+
+
+        }
+
+        #sidebar-toggle:checked~.card-body i h5 h4 a {
+            padding-left: 5rem;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        /* form 1 for */
+        .f1-btn {
+            background:rgb(2, 2, 71);
+            color:darkorange;
+        }
+
+        .f1-btn:hover {
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+        .submit-btn  input{
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+
+        .submit-btn  input:hover{
+            background:rgb(2, 2, 71);
+            color:darkorange;
+        }
+
+        .box .file input:hover {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box input:focus {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box .company:focus {
+            border: 2px solid rgb(2, 2, 71);
+
+        }
+         .error {
+            font-weight: 700;
+            display: block;
+            color: #f00;
+            font-size: 12px;
+            text-align: left;
+            padding-left: 1rem;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="sidebar-toggle" class="">
+    <div style="background:rgb(2, 2, 71); z-index: 1000;"
+        class="sidebar text-white  h-[100%] w-[70px] fixed left-0 top-0 z-50   || xl:h-[100%] xl:w-[80px] xl:fixed xl:left-0 xl:top-0    xl:overflow-y-auto ">
+        <div class="sidebar-header">
+            <div class="logo flex items-center space-x-2">
+                <a href="deskbord2.html">
+                    <img style="background: rgb(2,2,71) ;" src="logo.png" alt="" class="w-[45px] h-[45px] cursor-pointer rounded-full border-amber-500 border-2 m-[1rem]  ">
+
+                </a>
+                <p class="text-2xl font-bold text-amber-500">SULTAN MOBILE</p>
+            </div>
+        </div>
+
+
+        <div style="transition: 500ms;" class="sidebar-menu  ">
+            <ul>
+                <li
+                    class=" mb-[1rem]  py-2 || xl:mb-[1rem] items-center  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="deskbord2.html"
+                        class="ml-5 text-lg font-semibold hover:font-semibold flex  items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-home  text-2xl pr-[.5rem] hover:font-semibold || xl:pr-[.6rem]"></i>
+                        <span class=""> Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="allcustomer.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-users  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-history  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="about.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-user  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="contect.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-phone  text-2xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-brands fa-whatsapp  text-3xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Whatsapp</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="form1.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-plus  h text-4xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Add Customer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content ml-[75px] ||  xl:ml-[80px]">
+        <header
+            class=" fixed top-0 z-50   bg-white h-[60px] flex items-center justify-between pr-[.5rem] pl-[.5rem] left-[70px] border border-b-2 border-b-black w-[82%] || md:left-[190px]  md:w-[77%]
+            || xl:top-0 xl:z-50  xl:w-[95%]  xl:bg-white xl:h-[60px] xl:flex xl:items-center  xl:pr-[1rem] xl:pl-[1rem] xl:left-[80px] xl:border xl:border-b-2 xl:border-b-black">
+            <div class="left-header flex space-x-6">
+                <label for="sidebar-toggle" class="ti-menu-alt cursor-pointer   ">
+                    <i class="fa-solid fa-bars  text-2xl ml-0 xl:ml-0 hover:text-amber-500 "></i>
+                </label>
+              
+    
+              
+            </div>
+           
+            <div class="right-header">
+
+                <div class="social-icon flex items-center space-x-2  || md:mr-0 || xl:space-x-5 xl:mr-0  ">
+                    <i class="fa-solid fa-bell cursor-pointer text-xl  "></i>
+                    <i class="fa-solid fa-message cursor-pointer text-xl "></i>
+                    <div class="drop-item xl:flex xl:justify-center xl:items-center xl:flex-col ">
+                        <div class="img" onclick="MyFunction()">
+                            <img src="shad.png" alt=""
+                                class=" cursor-pointer border-0 border-black w-[50px] h-[50px] object-cover rounded-full || md:w-[40px] md:h-[40px] md:object-cover md:rounded-full  || xl:w-[50px] xl:h-[50px] xl:object-cover xl:rounded-full">
+    
+                        </div>
+    
+                        <div style="background:rgb(2, 2, 71);"
+                            class="drop-content rounded-md    absolute  top-[45px]  right-[3.5rem] pt-[10px] pb-[10px] pl-[15px] pr-[15px]  mt-[20px]  || xl:pt-[10px] xl:pb-[10px] xl:pl-[15px] xl:pr-[15px]  xl:mt-[20px] xl:top-[45px] xl:right-[1.5rem]  before:absolute before:left-[45%] before:top-[-6px]  before:w-[12px] ">
+                            <div class="NAME font-bold text-white mb-3 mt-3">
+                                <P>RAJPUT MOHAMMADSHAD</P>
+                            </div>
+    
+    
+                            <ul class="link  ">
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  ">
+                                    <a href="#" class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-user  inline-block  w-[20px] mr-[5px]">
+                                        </i> My Profile</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-pen-to-square inline-block  w-[20px] mr-[5px]"></i>Edit
+                                        Profile</a></li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="fpass.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-lock inline-block  w-[20px] mr-[5px]"></i>Change Password</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-user-gear inline-block  w-[20px] mr-[5px]"></i>Settings</a>
+                                </li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+    
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="login.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-right-from-bracket inline-block  w-[20px] mr-[5px]"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="    p-0  p pr-0  || xl:mt-[60px] xl:min-h-[90vh] xl:p-[1rem] xl:pl-[2rem] xl:pr-[2rem] ">
+
+            <div class="main-header mt-[5rem] ml-[.5rem] mr-[.8rem] xl:mt-0 xl:mr-0 xl:ml-0">
+                
+                <div style="background:rgb(2,2,71) ;"
+                 class="main-header rounded-md space-y-3  xl:h-[150px] xl:flex items-center justify-start   xl:space-x-11">
+                    
+                 <form action="/search">
+                    <div style="background:rgb(2,2,71) ;"
+                        class="main-header space-y-3  xl:h-[110px] xl:flex items-center justify-between xl:pl-[2rem] xl:pr-[2rem]   xl:space-x-11">
+
+                        <div
+                            class="search-wrapper flex justify-start pl-[1rem] pt-[1rem] items-center space-x-3 ||  xl:space-x-3  xl:pl-0 xl:pt-0  ">
+                            <i class="fa-solid fa-search xl:text-2xl text-amber-500"></i>
+                            <input type="search"
+                                class=" pl-[.5rem] h-[30px] w-[200px] border rounded-md text-lg  || xl:text-base  xl:pl-[1rem] xl:h-[40px] xl:w-[350px] xl:py-6  "
+                                name="number" id="number" placeholder="Enter Mobile Number">
+
+                        </div>
+                       
+                       
+                      
+
+                        <div class="search-btn py-2 pb-6 text-center xl:flex xl:justify-end  xl:py-5  xl:pt-0    ">
+                            <div class="xl:space-x-10 transition-all hover:scale-110 duration-300">
+                                <input type="submit"
+                                    class=" f1-btn  text-amber-500 cursor-pointer font-bold border-2 transform  relative px-8  xl:px-20 py-[6px] rounded-full  hover:border-2  hover:bg-amber-500 text-lg"
+                                    placeholder="Search" value="search">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+    
+                    
+                </div>
+            </div>
+           
+
+
+            <section
+            class="recent block  mt-[0rem] ml-[1rem] mr-[1rem] || xl:flex xl:mt-[1rem] xl:mb-[3rem] xl:ml-0 xl:mr-0 xl:w-[100%]">
+
+            <div class="activity-grid xl:grid xl:grid-cols-2  ">
+
+                <div class=" activity-card w-[100%] mt-[1rem]  xl:w-[200%] h-[800px] overflow-y-scroll ">
+
+                    <table class="w-[1600px] text-left overflow-scroll   border-collapse">
+                        <thead style="color: rgb(2, 2, 71);" class="bg-slate-100 text-center text-lg p-[10px]">
+                            <tr class="overflow-y-scroll border-r ">
+                                <th class="w-[200px] h-[50px]">S.NO</th>
+                                <th class="w-[200px] h-[50px]">PHOTO</th>
+                                <th class="w-[200px] h-[50px]">FULL NAME</th>
+                                <th class="w-[200px] h-[50px]">PHONE</th>
+                                <th class="w-[200px] h-[50px]">DATE</th>
+                                <th class="w-[200px] h-[50px]">INVOICE NO</th>
+                                <th class="w-[200px] h-[50px]">MODAL NAME</th>
+                                <th class="w-[200px] h-[50px]">FULL PRICE</th>
+                                <th class="w-[200px] h-[50px]">FINAL PRICE</th>
+                                <th class="w-[200px] h-[50px]">PENDING</th>
+                                <th class="w-[200px] h-[50px]">STATUS</th>
+                                <!-- <th class="w-[200px] h-[50px]">EDIT</th> -->
+
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% if(data.length> 0){ %>
+                                <% data.forEach(function(data) { %>
+                            <tr class="  border-b border-black font-semibold">
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.id %></td>
+                                <td class="w-[200PX] h-[40px] text-center">
+                                  <%= data.cphoto%>
+                                </td>
+
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.fname %></td>
+                                <td class="w-[0px] h-[40px] pl-10 ">
+                                   <%= data.number %>
+                                </td>
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.fddate %></td>
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.inumber %></td>
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.moname %></td>
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.pamount %></td>
+                                <td class="w-[200PX] h-[40px] text-center"><%= data.finalamount %></td>
+                                <td class="w-[200PX] h-[40px] text-center">45000</td>
+                                <td class="w-[200PX] h-[40px] text-center">
+                                    <div>
+                                        <h3 class=" text-red-500  font-bold py-1  rounded-md">Pending</h3>
+
+                                    </div>
+                                </td>
+                                <!-- <td class="w-[200PX] h-[40px] text-center">
+                                    <button class="transform transition-all hover:scale-125">
+                                        <a href="showall.html" class="text-blue-500 font-semibold ">Edit</a>
+
+                                    </button>
+                                </td> -->
+                                
+                             
+                            </tr>
+                            <% }); %>
+                            <%}else{%>
+
+                                <tr>
+
+                                    <td class="justify-center w-[200px] h-[40px]">
+                                        <h1 class=" absolute left-[45rem]  text-2xl font-semibold  ">
+                                            Data Not Found</h1>
+                                    </td>
+
+                                </tr>
+
+                                <%}%>
+
+                           
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+             
+            </div>
+
+
+
+        </section>
+        </main>
+    </div> 
+
+    <script>
+        // var btn_hambug = document.getElementById('btn_hamburg');
+
+        function showmenu() {
+            $('#menu').css({ "left": "0", "width": "270px" });
+        }
+        $('document').ready(function () {
+
+            $('#close-btn').click(function () {
+                $('#menu').css("left", "-272px");
+            })
+
+        })
+
+        function MyFunction() {
+            var dropcontent = document.querySelector('.drop-content');
+            dropcontent.classList.toggle('dropdown-toggle');
+        }
+
+
+
+    </script>
+</body>
+
+</html>

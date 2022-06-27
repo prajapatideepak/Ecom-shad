@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+
+    <link rel="stylesheet" href="about.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <title>Document</title>
+    <style>
+        li .btn-login{
+            background:white;
+            color: rgb(2,2,71);
+        }
+
+        li .btn-login:hover{
+            background: darkorange;
+            color: rgb(2,2,71);
+       
+
+        }
+
+        .f1-btn{
+            background: rgb(2,2,71);
+          
+            
+        }
+
+        .f1-btn:hover{
+            background: darkorange;
+            color: rgb(2,2,71);
+            /* border: 2px solid rgb(2,2,71); */
+        }
+    </style>
+</head>
+
+<body class="">
+    <nav style="background:rgb(2,2,71);"
+    class="" x-data="{navbaarOpen:false}">
+       <div  
+        class="container mx-auto flex flex-wrap  py-2   px-4 lg:space-x-4 lg:w-auto xl:ml-[1rem] xl:mr-[1rem]">
+           <a href=""
+               class=" inline-flex p-2 text-white text-xl  font-bold uppercase tracking-wider || lg:text-2xl || xl:text-3xl ">Sultan
+               Mobile </a>
+
+           <button class="btn md:hidden lg:hidden inline-flex items-center ml-auto justify-center 
+           border h-10 w-10 text-white rounded-md outline-none focus:outline-none "
+               @click="navbaarOpen = !navbaarOpen">
+               <svg xmlns="http://www.w3.org/2000/svg" class=" h-7 w-15  " fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor" stroke-width="2">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+               </svg>
+           </button>
+
+           <div class=" w-full  lg:inline-flex lg:w-auto mt-2 lg:mt-0  lg:px-[8rem] lg:justify-center ||  xl:justify-center xl:items-center xl:px-[20rem] "
+               :class="{'hidden':!navbaarOpen,'flex':navbaarOpen}">
+               <ul
+                   class=" flex-col w-full lg:w-auto flex items-center lg:flex-row space-y-2 lg:space-y-0 lg:space-x-2 ||  ">
+                   <li class="  ">
+                       <a href="home"
+                           class="flex px-4 py-2 hover:border-b hover:border-b-amber-500 hover:text-amber-500   font-medium rounded-md  justify-center text-white  || lg:text-lg || xl:text-xl  ">Home</a>
+                   </li>
+                   <li>
+                       <a href="about"
+                       class="flex px-4 py-2 hover:border-b hover:border-b-amber-500 hover:text-amber-500   font-medium rounded-md  justify-center text-white  || lg:text-lg || xl:text-xl  ">About</a>
+                   </li>
+                   <li>
+                       <a href="contect"
+                       class="flex px-4 py-2 hover:border-b hover:border-b-amber-500 hover:text-amber-500   font-medium rounded-md  justify-center text-white  || lg:text-lg || xl:text-xl  ">Contact</a>
+                   </li>
+                   <li>
+                       <a 
+                       href="login"
+                           class=" btn-login relative bg-amber-500 rounded-md   inline-block px-28 py-1 font-bold group|| md:relative md:inline-block md:px-8 md:py-2 md:font-medium md:text-2xl md:group||
+                            xl:relative xl:inline-block xl:px-4 ml-2 xl:py-1 xl:font-bold xl:text-2xl xl:group">Login</a>
+
+                   </li>
+
+               </ul>
+           </div>
+
+       </div>
+
+
+
+   </nav>
+
+    <div
+        class="box justify-center h-auto items-center content-center rounded-md p-[2rem] pt-[2rem]  ||  md:p-[1rem] md:pt-6      md:absolute md:transform md:translate-x-[12%] md:translate-y-[8%]   md:mr-[10rem]   ||
+         lg:flex lg:mt-[4rem]  lg:absolute lg:transform lg:translate-x-[9%] lg:translate-y-[8%]  lg:space-x-2  lg:p-[2rem] lg:shadow-2xl   || xl:flex xl:mt-[0rem]     xl:space-x-2  xl:p-0 xl:shadow-none  ">
+
+
+        <div
+            class="left    rounded-md  || sm:pt-0 || md:w-full md:shadow-none     ||lg:w-full lg:p-[5rem]  lg:pt-[2rem] || xl:w-full  xl:p-0 xl:pt-0 xl:text-left">
+            <div class="p-[1rem] text-center justify-center items-center || md:p-0 xl:text-left xl:p-0  ">
+                <h1 style="color:rgb(2,2,71) ;"
+                    class=" font-serif  font-extrabold text-3xl ||  md:py-2 md:text-4xl ||  lg:text-5xl lg:py-2 || xl:text-8xl ">
+                    About Us</h1>
+
+                <h2 style="color:rgb(2,2,71) ;"
+                class=" text-sm  py-1 || md:  || lg: || xl:py-3 xl:text-base ">
+                    Lorem ipsum
+                    dolor, sit amet
+                    consecteturadipisicingelit. Quod porro asperiores
+                    maiores magnam aliquid mollitia hic
+                    Lorem ipsum
+                    dolor, sit amet
+                    consecteturadipisicingelit. Quod porro asperiores
+                    maiores magnam aliquid mollitia hic
+                </h2>
+                <div class="  justify-start items-start py-[1rem] ||  || md:py-5 xl:flex">
+                    <a href="#" 
+                    class=" f1-btn  text-amber-500 font-bold    relative px-8  xl:px-16 xl:py-3  py-[6px] rounded-full  text-lg || ">About Us</a>
+              
+                </div>
+
+
+
+               
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="right    pt-[1rem] ||  md:w-full md:pt-[2rem]  || ||lg:p-[2rem] lg:w-full || xl:p-0 xl:w-full">
+            <div class=" text-center pt-0 py-2 || md:w-full  ||lg:w-full  || xl:w-[800px] ">
+
+                <img src="img/about.svg" alt="" class="xl:p-[2rem] xl:mt-[2rem]">
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</body>
+
+</html>

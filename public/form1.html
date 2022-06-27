@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="https://https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="jquary.js"></script>
+    <link rel="stylesheet" href="form1.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .link a:hover {
+            color: rgb(2, 2, 71);
+        }
+
+        .card-content .revenue:hover {
+
+            box-shadow: 4px 4px 4px darkgoldenrod;
+
+
+        }
+
+
+        .card-single:hover {
+            transform: translate(0, -8px);
+        }
+
+        .drop-item .dropdown-toggle {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+        .drop-content {
+            box-shadow: 0 50px 50px rgb(0, 0, 0, .10);
+            transform: translateY(50px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .drop-item .drop-content::before {
+
+            position: absolute;
+            left: 89%;
+            top: -7px;
+
+            width: 14px;
+            height: 14px;
+            transform: translate(50%) rotate(45deg);
+        }
+
+        /* .main-content {
+width: calc(100% - 240px);
+} */
+
+        #sidebar-toggle:checked~.main-content {
+            margin-left: 60px;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main {
+            width: auto;
+        }
+
+        #sidebar-toggle:checked~.main-content .card-body {
+
+            width: 100%;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main-content header {
+            left: 220px;
+            width: 85.9%;
+        }
+
+        header {
+            transition: 500ms;
+        }
+
+
+
+        .main-content {
+            transition: margin-left 500ms;
+
+        }
+
+
+
+        .sidebar {
+            transition: width 500ms;
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* #sidebar-toggle:checked~ main .card-single {
+height: 100%;
+} */
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header img {
+            display: none;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header .brand span {
+            position: relative;
+        }
+
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-menu ul li a {
+
+
+            justify-content: left;
+            margin-left: 20px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header {
+            justify-content: left;
+            margin-left: 10px;
+            margin-top: 1rem;
+        }
+
+        #sidebar-toggle:checked~.main-content main .card-single {
+            display: flex;
+        }
+
+        .sidebar .sidebar-header p,
+        .sidebar li span:last-child {
+            display: none;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header p,
+        #sidebar-toggle:checked~.sidebar li span:last-child {
+            display: block;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header h2 span,
+        #sidebar-toggle:checked~.sidebar li a:last-child {
+            margin-left: 0;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header,
+        #sidebar-toggle:checked~.sidebar li {
+            display: flex;
+
+
+
+        }
+
+        #sidebar-toggle:checked~.card-body i h5 h4 a {
+            padding-left: 5rem;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        /* form 1 for */
+        .f1-btn {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .f1-btn:hover {
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+
+        .submit-btn input {
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+
+        .submit-btn input:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .box .file input:hover {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box input:focus {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box .company:focus {
+            border: 2px solid rgb(2, 2, 71);
+
+        }
+
+        .error {
+            font-weight: 700;
+            display: block;
+            color: #f00;
+            font-size: 12px;
+            text-align: left;
+            padding-left: 1rem;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-200">
+    <input type="checkbox" id="sidebar-toggle" class="">
+    <div style="background:rgb(2, 2, 71); z-index: 1000;"
+        class="sidebar text-white  h-[100%] w-[70px] fixed left-0 top-0 z-50   || xl:h-[100%] xl:w-[80px] xl:fixed xl:left-0 xl:top-0    xl:overflow-y-auto ">
+        <div class="sidebar-header">
+            <div class="logo flex items-center space-x-2">
+                <a href="deskbord2.html">
+                    <img style="background: rgb(2,2,71) ;" src="logo.png" alt=""
+                        class="w-[45px] h-[45px] cursor-pointer rounded-full border-amber-500 border-2 m-[1rem]  ">
+
+                </a>
+                <p class="text-2xl font-bold text-amber-500">SULTAN MOBILE</p>
+            </div>
+        </div>
+
+
+        <div style="transition: 500ms;" class="sidebar-menu  ">
+            <ul>
+                <li
+                    class=" mb-[1rem]  py-2 || xl:mb-[1rem] items-center  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="deskbord2.html"
+                        class="ml-5 text-lg font-semibold hover:font-semibold flex  items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-home  text-2xl pr-[.5rem] hover:font-semibold || xl:pr-[.6rem]"></i>
+                        <span class=""> Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="allcustomer.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-users  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-history  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="about.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-user  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="contect.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-phone  text-2xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-brands fa-whatsapp  text-3xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Whatsapp</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="form1.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-plus  h text-4xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Add Customer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content ml-[75px] ||  xl:ml-[80px]">
+        <header
+            class=" fixed top-0 z-50   bg-white h-[60px] flex items-center justify-between pr-[.5rem] pl-[.5rem] left-[70px] border border-b-2 border-b-black w-[82%] || md:left-[190px]  md:w-[77%]
+            || xl:top-0 xl:z-50  xl:w-[95%]  xl:bg-white xl:h-[60px] xl:flex xl:items-center  xl:pr-[1rem] xl:pl-[1rem] xl:left-[80px] xl:border xl:border-b-2 xl:border-b-black">
+            <div class="left-header flex space-x-6">
+                <div class="headings flex  justify-center items-center  ">
+
+                    <p style="color:rgb(2,2,71) ;" class="text-xl  font-bold mt-0 xl:mt-0 xl:text-4xl ">
+                        Customer Details :-</p>
+                </div>
+            </div>
+
+            <div class="right-header">
+
+                <div class="social-icon flex items-center space-x-2  || md:mr-0 || xl:space-x-5 xl:mr-0  ">
+                    <i class="fa-solid fa-bell cursor-pointer text-xl  "></i>
+                    <i class="fa-solid fa-message cursor-pointer text-xl "></i>
+                    <div class="drop-item xl:flex xl:justify-center xl:items-center xl:flex-col ">
+                        <div class="img" onclick="MyFunction()">
+                            <img src="shad.png" alt=""
+                                class=" cursor-pointer border-0 border-black w-[50px] h-[50px] object-cover rounded-full || md:w-[40px] md:h-[40px] md:object-cover md:rounded-full  || xl:w-[50px] xl:h-[50px] xl:object-cover xl:rounded-full">
+
+                        </div>
+
+                        <div style="background:rgb(2, 2, 71);"
+                            class="drop-content rounded-md    absolute  top-[45px]  right-[3.5rem] pt-[10px] pb-[10px] pl-[15px] pr-[15px]  mt-[20px]  || xl:pt-[10px] xl:pb-[10px] xl:pl-[15px] xl:pr-[15px]  xl:mt-[20px] xl:top-[45px] xl:right-[1.5rem]  before:absolute before:left-[45%] before:top-[-6px]  before:w-[12px] ">
+                            <div class="NAME font-bold text-white mb-3 mt-3">
+                                <P>RAJPUT MOHAMMADSHAD</P>
+                            </div>
+
+
+                            <ul class="link  ">
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  ">
+                                    <a href="#" class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-user  inline-block  w-[20px] mr-[5px]">
+                                        </i> My Profile</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-pen-to-square inline-block  w-[20px] mr-[5px]"></i>Edit
+                                        Profile</a></li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="fpass.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-lock inline-block  w-[20px] mr-[5px]"></i>Change
+                                        Password</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-user-gear inline-block  w-[20px] mr-[5px]"></i>Settings</a>
+                                </li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="login.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-right-from-bracket inline-block  w-[20px] mr-[5px]"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div
+            class="form  ml-0 mr-0 w-full pl-[.5rem] pr-[.5rem] || md:ml-[0px] md:mr-[20px] || xl:flex xl:justify-center xl:content-center xl:items-center  ">
+
+            <form action="/form1" id="form" onSubmit="return validate();" method="post">
+                <div
+                    class="basic_details bg-white text-center xl:text-left mt-[5rem] pb-[2rem] xl:mt-[6rem] xl:pb-[2rem] xl:pl-[5rem] xl:pr-[5rem]">
+
+                    <div class="1row   || md:mt-10 md:w-[100%] || xl:justify-center  items-center  ">
+                        <div class="  md:pl-[5rem] || xl:py-5  xl:flex  xl:justify-center xl:content-center ">
+                            <div class="profile    ">
+                                <div class="img  ml-[2.5rem] py-3 || md:ml-[12rem] || xl:ml-7 xl:py-2  ">
+                                    <img src="user.jpg" alt=""
+                                        class=" cursor-pointer border-0  border-black w-[55px] h-[55px] object-cover rounded-full || md:w-[45px] md:h-[45px] md:object-cover md:rounded-full  || xl:w-[60px] xl:h-[60px] xl:object-cover xl:rounded-full">
+                                </div>
+                                <div class=" text-left ml-4 ">
+                                    <label for="fname" class="text-base t  md:mr-8 xl:pr-2 ">Customer Photo*</label>
+
+                                </div>
+
+
+                                <div class="file  ">
+                                    <input type="file" name="pphoto" id="pphoto"
+                                        class=" file border  rounded-md  cursor-pointer hover:border-blue-900 border-gray-300  w-[12rem] mr-[4rem] relative font-semibold   px-3 py-2 || md:w-[15rem] ||  xl:w-[15rem]   "
+                                        required>
+                                    <span id="file_error" class="error"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="2row   || xl:flex xl:justify-center  items-center xl:space-x-20 ">
+                        <div class="1input  pl-[0px]  || md:pl-[4rem] md:w-[55%]  || xl:pl-0  xl:w-[18rem]  ">
+                            <div class="py-2 block">
+                                <label for="fname" class="text-base ml-2 md:ml-2">First Name*</label>
+                                <input type="text" id="fname" name="fname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter First Name">
+                            </div>
+
+                        </div>
+                        <div class="2input  pl-[0px] w-[100%] || md:pl- md:w-[55%]  || xl:pl-0   xl:w-[18rem] ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Middle Name</label>
+                                <input type="text" id="mname" name="mname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border   border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Middle Name">
+                            </div>
+
+                        </div>
+                        <div class="3input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  ||  xl:pl-0  xl:w-[18rem]  ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Last Name*</label>
+                                <input type="text" id="lname" name="lname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Last Name">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="3row xl:flex xl:justify-center  items-center xl:space-x-20 ">
+                        <div class="1input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:pl-0  xl:w-[18rem]   ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Mobile No.* <span
+                                        class="text-gray-400 font-semibold text-xs">(Whatsapp No)</span></label>
+                                <input type="number" id="number" name="number"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Mobile Number">
+                            </div>
+
+                        </div>
+                        <div class="2input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:pl-0  xl:w-[18rem]   ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Mobile No. <span
+                                        class="text-gray-400 font-semibold text-xs">(Alternative)</span></label>
+                                <input type="number" id="onumber" name="onumber"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Alternative Number">
+                            </div>
+
+                        </div>
+                        <div class="3input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:pl-0  xl:w-[18rem]  ">
+                            <div class="py-2">
+                                <label for="email" class="text-base ml-2 md:ml-2">Email Address*</label>
+                                <input type="email" id="email" name="email"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Email ">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="4row  xl:flex xl:justify-center  items-center xl:space-x-30 ">
+                        <div
+                            class="1input  pl-[0px] w-[100%] || md:pl-[3rem] md:w-[55%]  ||  xl:pl-0  xl:w-[20rem]     ">
+                            <div class="py-2 s">
+                                <label for="bdate" class="text-base ml-2 md:ml-2 xl:pl-0">Date Of Birth</label>
+                                <div class="date flex items-center  cursor-pointer">
+
+                                    <input type="date" name="bdate" id="bdate"
+                                        class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  || xl:w-[15rem]   "
+                                       placeholder="Select Birth Date" required>
+                                       <i class="fa-regular fa-calendar relative right-[1.5rem]"></i>
+
+                                </div>
+                                <label for="bdate" id="error" class="error"></label>
+                            </div>
+
+                        </div>
+                        <div
+                            class="2input   w-[100%] flex pl-0 || md:pl-[3rem] md:w-[55%]  || xl:pl-0  xl:w-[20rem]     ">
+                            <div class=" flex space-x-4  items-center xl:text-center xl:items-center xl:justify-center">
+                                <label for="gender" class="text-base ml-6 md:ml-4  ">Gender:*</label>
+                                <div
+                                    class="gender flex space-x-4  text-center items-center justify-center py-2 md:space-x-20 md:py-2 xl:space-x-10">
+                                    <div class="male">
+                                        <input type="radio" id="gender" name="gender[]" class=" cursor-pointer"
+                                            value="male" required>
+                                        <p>Male</p>
+                                    </div>
+                                    <div class="fmale">
+                                        <input type="radio" id="gender" name="gender[]" class=" cursor-pointer"
+                                            value="fmale" required>
+                                        <p>Female</p>
+                                    </div>
+                                    <div class="others">
+                                        <input type="radio" id="gender" name="gender[]" class=" cursor-pointer"
+                                            value="others" required>
+                                        <p>Others</p>
+                                    </div>
+                                    
+                                </div>
+                              
+                               
+
+                            </div>
+                            <label for="gender[]"
+                            class=" error" id="error"></label>
+                           
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <hr class=" bg-black h-[2px] w-full"> -->
+
+                <div
+                    class="refrence_details  bg-white text-center xl:text-left mt-[1.5rem] pb-[2rem]  xl:mt-[1.5rem] xl:pb-[2rem]">
+                    <div class="5row flex justify-center    ">
+                        <div class="ref text-3xl  text-blue-900 font-semibold py-5    ">
+                            <p style="color:rgb(2,2,71) ;" class="">Refrence Details :</p>
+                        </div>
+                    </div>
+
+
+                    <div class="6row   || xl:flex xl:justify-center  items-center xl:space-x-20  ">
+                        <div class="1input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:w-[18rem] xl:pl-0   ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">First Name*</label>
+                                <input type="text" id="rfname" name="rfname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter First Name" required>
+                            </div>
+
+                        </div>
+                        <div class="1input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:w-[18rem] xl:pl-0    ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Last Name*</label>
+                                <input type="text" id="rlname" name="rlname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Last Name" required>
+                            </div>
+
+                        </div>
+                        <div class="1input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:w-[18rem] xl:pl-0     ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">Mobile Number* <span
+                                        class="text-gray-400 font-semibold text-xs">(Whatsapp)</span></label>
+                                <input type="number" id="rnumber" name="rnumber"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Mobile Number" required>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="7row py-8 text-center xl:flex xl:justify-end  xl:py-5  xl:pt-[1rem] xl:mr-14    ">
+                    <div class=" submit-btn xl:space-x-10">
+                        <!-- <a href="form1.html" 
+                        class=" f1-btn  text-amber-500 font-bold border-2  relative px-8  xl:px-10 py-[6px] rounded-md  hover:border-2 hover:bg-amber-500 text-lg || ">Back</a>
+                    -->
+                        <input type="submit" id="submit"
+                            class=" f1-btn  text-amber-500 font-bold border-2 cursor-pointer  relative px-8  xl:px-10 py-[6px] rounded-md  hover:border-2 hover:bg-amber-500 text-lg ||  "
+                            value="Next">
+
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="form1.js"></script>
+
+        <script>
+
+
+
+            function showmenu() {
+                $('#menu').css({ "left": "0", "width": "270px" });
+            }
+            $('document').ready(function () {
+
+                $('#closbtn').mouseover(function () {
+                    $('#menu').css("left", "-272px");
+                })
+
+            });
+
+            function MyFunction() {
+                var dropcontent = document.querySelector('.drop-content');
+                dropcontent.classList.toggle('dropdown-toggle');
+            };
+
+
+            //-------------------->   Date Field  <--------------------------
+
+            config = {
+                enableTime: true,
+                dateFormat: "d-m-y",
+            }
+            flatpickr("#bdate", {});
+-
+
+
+            $.validator.addMethod("lettersonly", function (value, element) {
+                return this.optional(element) || /^[a-z]+$/i.test(value);
+            }, "Letters only please");
+
+
+            $("#form").validate({
+
+
+                rules: {
+
+                    cphoto: {
+                        required: true,
+
+                    },
+
+
+                    fname: {
+                        required: true,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+
+                    mname: {
+                        lettersonly: true
+                    },
+
+                    lname: {
+                        required: true,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+
+                    number: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+
+
+                    },
+
+                    onumber: {
+                        minlength: 10,
+                        maxlength: 10,
+                    },
+
+
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    bdate: {
+                        require: true,
+
+
+                    },
+
+                    "gender[]": {
+                        require: true,
+
+                    },
+
+                    rfname: {
+                        required: true,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+
+                    rlname: {
+                        required: true,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+
+                    rnumber: {
+                        required: true,
+                        maxlength: 10,
+                        minlength: 10
+                    }
+
+                },
+
+
+                messages: {
+
+                    cphoto: {
+                        required: "Please upload file."
+
+                    },
+
+                    fname: {
+                        required: "Please Enter  First Name",
+                        minlength: "Please Enter At Least 3 Charactors",
+                        lettersonly: "Please Enter Only Letters!!"
+                    },
+
+                    mname: {
+                        lettersonly: "Please Enter Only Letters!!"
+                    },
+
+                    lname: {
+                        required: "Please Enter  First Name",
+                        minlength: "Please Enter At Least 3 Charactors",
+                        lettersonly: "Please Enter Only Letters!!"
+                    },
+
+                    number: {
+
+                        required: "Please Enter  Mobile Number",
+                        maxlength: "Please Enter Only 10 Digit",
+                        minlength: "Please Enter Valid Number"
+                    },
+
+                    onumber: {
+                        minlength: "Please Enter Valid Number",
+
+                        maxlength: "Please Enter Only 10 Digit"
+                    },
+
+                    email: {
+                        required: "Please Enter Email Adress",
+                        email: "Please Enter Correct Email"
+                    },
+
+                    bdate: {
+                        required: "Please Select Date ",
+
+                    },
+
+                    "gender[]": {
+                        required: "Please Select Gender"
+                    },
+
+                    rfname: {
+                        required: "Please Enter  First Name",
+                        minlength: "Please Enter At Least 3 Charactors",
+                        lettersonly: "Please Enter Only Letters!!"
+                    },
+
+                    rlname: {
+                        required: "Please Enter  First Name",
+                        minlength: "Please Enter At Least 3 Charactors",
+                        lettersonly: "Please Enter Only Letters!!"
+                    },
+
+                    rnumber: {
+                        required: "Please Enter  Mobile Number",
+                        maxlength: "Please Enter Only 10 Digit",
+                        minlength: "Please Enter Valid Number",
+                    }
+
+                },
+
+                submitHendler: function (form) {
+                    form.submit();
+                }
+
+            });
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

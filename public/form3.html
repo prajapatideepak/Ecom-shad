@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="deskbord.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jquary.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="form3.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+    <style>
+        .link a:hover {
+            color: rgb(2, 2, 71);
+        }
+
+        .card-content .revenue:hover {
+
+            box-shadow: 4px 4px 4px darkgoldenrod;
+
+
+        }
+
+
+
+
+
+        .card-single:hover {
+            transform: translate(0, -8px);
+        }
+
+        .drop-item .dropdown-toggle {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+        .drop-content {
+            box-shadow: 0 50px 50px rgb(0, 0, 0, .10);
+            transform: translateY(50px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .drop-item .drop-content::before {
+
+            position: absolute;
+            left: 89%;
+            top: -7px;
+
+            width: 14px;
+            height: 14px;
+            transform: translate(50%) rotate(45deg);
+        }
+
+        /* .main-content {
+            width: calc(100% - 240px);
+        } */
+
+        #sidebar-toggle:checked~.main-content {
+            margin-left: 60px;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main {
+            width: auto;
+        }
+
+        #sidebar-toggle:checked~.main-content .card-body {
+
+            width: 100%;
+        }
+
+
+
+
+        #sidebar-toggle:checked~.main-content header {
+            left: 220px;
+            width: 85.9%;
+        }
+
+        header {
+            transition: 500ms;
+        }
+
+
+
+        .main-content {
+            transition: margin-left 500ms;
+
+        }
+
+
+
+        .sidebar {
+            transition: width 500ms;
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* #sidebar-toggle:checked~ main .card-single {
+            height: 100%;
+        } */
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar {
+            width: 220px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header img {
+            display: none;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header .brand span {
+            position: relative;
+        }
+
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-menu ul li a {
+
+
+            justify-content: left;
+            margin-left: 20px;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header {
+            justify-content: left;
+            margin-left: 10px;
+            margin-top: 1rem;
+        }
+
+        #sidebar-toggle:checked~.main-content main .card-single {
+            display: flex;
+        }
+
+        .sidebar .sidebar-header p,
+        .sidebar li span:last-child {
+            display: none;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header p,
+        #sidebar-toggle:checked~.sidebar li span:last-child {
+            display: block;
+        }
+
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header h2 span,
+        #sidebar-toggle:checked~.sidebar li a:last-child {
+            margin-left: 0;
+        }
+
+        #sidebar-toggle:checked~.sidebar .sidebar-header,
+        #sidebar-toggle:checked~.sidebar li {
+            display: flex;
+
+
+
+        }
+
+        #sidebar-toggle:checked~.card-body i h5 h4 a {
+            padding-left: 5rem;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .b-btn:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        /* form 1 for */
+        .f1-btn {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .f1-btn:hover {
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+
+        .submit-btn input {
+            background: darkorange;
+            color: rgb(2, 2, 71);
+        }
+
+        .submit-btn input:hover {
+            background: rgb(2, 2, 71);
+            color: darkorange;
+        }
+
+        .box .file input:hover {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box input:focus {
+            border: 2px solid rgb(2, 2, 71);
+        }
+
+        .box .company:focus {
+            border: 2px solid rgb(2, 2, 71);
+
+        }
+
+        .error {
+            font-weight: 500;
+            display: block;
+            color: #f00;
+            font-size: 12px;
+            text-align: left;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+    <input type="checkbox" id="sidebar-toggle" class="">
+    <div style="background:rgb(2, 2, 71); z-index: 1000;"
+        class="sidebar text-white  h-[100%] w-[70px] fixed left-0 top-0 z-50   || xl:h-[100%] xl:w-[80px] xl:fixed xl:left-0 xl:top-0    xl:overflow-y-auto ">
+        <div class="sidebar-header">
+            <div class="logo flex items-center space-x-2">
+                <a href="deskbord2.html">
+                    <img style="background: rgb(2,2,71) ;" src="logo.png" alt=""
+                        class="w-[45px] h-[45px] cursor-pointer rounded-full border-amber-500 border-2 m-[1rem]  ">
+
+                </a>
+                <p class="text-2xl font-bold text-amber-500">SULTAN MOBILE</p>
+            </div>
+        </div>
+
+
+        <div style="transition: 500ms;" class="sidebar-menu  ">
+            <ul>
+                <li
+                    class=" mb-[1rem]  py-2 || xl:mb-[1rem] items-center  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="deskbord2.html"
+                        class="ml-5 text-lg font-semibold hover:font-semibold flex  items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-home  text-2xl pr-[.5rem] hover:font-semibold || xl:pr-[.6rem]"></i>
+                        <span class=""> Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="allcustomer.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-users  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500">
+                        <i class="fa-solid fa-history  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="about.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-user  text-2xl  pr-[.5rem] || ||xl:pr-[.6rem]"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="contect.html"
+                        class="ml-5 text-lg font-semibold flex items-center  space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-phone  text-2xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="" class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500">
+                        <i class="fa-brands fa-whatsapp  text-3xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Whatsapp</span>
+                    </a>
+                </li>
+
+                <li
+                    class=" mb-[1rem] items-center py-2 || xl:mb-[1rem]  xl:py-2 hover:border-l-4 hover:border-l-amber-500 ">
+                    <a href="form1.html"
+                        class="ml-5 text-lg font-semibold flex items-center space-x-2 hover:text-amber-500 ">
+                        <i class="fa-solid fa-plus  h text-4xl pr-[.5rem] || || xl:pr-[.6rem]"></i>
+                        <span>Add Customer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content ml-[75px] ||  xl:ml-[80px]">
+        <header
+            class=" fixed top-0 z-50   bg-white h-[60px] flex items-center justify-between pr-[.5rem] pl-[.5rem] left-[70px] border border-b-2 border-b-black w-[82%] || md:left-[190px]  md:w-[77%]
+            || xl:top-0 xl:z-50  xl:w-[95%]  xl:bg-white xl:h-[60px] xl:flex xl:items-center  xl:pr-[1rem] xl:pl-[1rem] xl:left-[80px] xl:border xl:border-b-2 xl:border-b-black">
+            <div class="left-header">
+                <div class="headings   justify-center items-center pt-0  xl:pt-0 ">
+
+                    <p style="color:rgb(2, 2, 71);" class=" text-base font-bold xl:mt-0 xl:text-3xl "> Phone And EMI
+                        Details :-</p>
+                </div>
+            </div>
+
+            <div class="right-header">
+
+                <div class="social-icon flex items-center space-x-2  || md:mr-0 || xl:space-x-5 xl:mr-0  ">
+                    <i class="fa-solid fa-bell cursor-pointer text-xl  "></i>
+                    <i class="fa-solid fa-message cursor-pointer text-xl "></i>
+                    <div class="drop-item xl:flex xl:justify-center xl:items-center xl:flex-col ">
+                        <div class="img" onclick="MyFunction()">
+                            <img src="shad.png" alt=""
+                                class=" cursor-pointer border-0 border-black w-[50px] h-[50px] object-cover rounded-full || md:w-[40px] md:h-[40px] md:object-cover md:rounded-full  || xl:w-[50px] xl:h-[50px] xl:object-cover xl:rounded-full">
+
+                        </div>
+
+                        <div style="background:rgb(2, 2, 71);"
+                            class="drop-content rounded-md    absolute  top-[45px]  right-[3.5rem] pt-[10px] pb-[10px] pl-[15px] pr-[15px]  mt-[20px]  || xl:pt-[10px] xl:pb-[10px] xl:pl-[15px] xl:pr-[15px]  xl:mt-[20px] xl:top-[45px] xl:right-[1.5rem]  before:absolute before:left-[45%] before:top-[-6px]  before:w-[12px] ">
+                            <div class="NAME font-bold text-white mb-3 mt-3">
+                                <P>RAJPUT MOHAMMADSHAD</P>
+                            </div>
+
+
+                            <ul class="link  ">
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  ">
+                                    <a href="#" class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-user  inline-block  w-[20px] mr-[5px]">
+                                        </i> My Profile</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-pen-to-square inline-block  w-[20px] mr-[5px]"></i>Edit
+                                        Profile</a></li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="fpass.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-lock inline-block  w-[20px] mr-[5px]"></i>Change
+                                        Password</a>
+                                </li>
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="#"
+                                        class="text-white   ml-5 font-semibold  py-1 "> <i
+                                            class="fa-solid fa-user-gear inline-block  w-[20px] mr-[5px]"></i>Settings</a>
+                                </li>
+                                <div class="drivider mt-[10px] mb-[10px] border-b-2 border-b-white"></div>
+
+                                <li class="h-[30px] pt-1  py-2  hover:bg-white hover:rounded-md  "><a href="login.html"
+                                        class="text-white   ml-5 font-semibold  py-1 "><i
+                                            class="fa-solid fa-right-from-bracket inline-block  w-[20px] mr-[5px]"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div
+            class="form  ml-0 mr-0 w-full pl-[.5rem] pr-[.5rem] || md:ml-[0px] md:mr-[20px] || xl:flex xl:justify-center xl:content-center xl:items-center  ">
+
+            <form action="/form3" id="form" method="post">
+
+                <div
+                    class="basic_details bg-white text-center xl:text-left mt-[5rem] pb-[2rem] xl:mt-[6rem] xl:pb-[2rem] xl:pl-0 xl:pr-0">
+
+
+                    <p style="color: rgb(2, 2, 71);"
+                        class=" font-bold xl:text-center text-2xl pt-3 text-center uppercase ">
+                        Phone Details :</p>
+                    <div class="1row xl:flex justify-center content-center  items-center xl:mr-0  xl:py-5 xl:space-x-20 ">
+
+                        <div
+                            class="1input py-2 pl-[0px] w-[100%] || md:pl-[7rem] md:w-[55%]  || xl:pl-0 xl:w-[20%]    ">
+                            <div class="">
+                                <label for="fname" class="text-base ml-2 md:ml-2 uppercase  ">Select Company*</label>
+                                <select name="company" id="company"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3  text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[33rem] || xl:w-60 "
+                                    required>
+                                    <option value="">Select</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="Onepluse">Onepluse</option>
+                                    <option value="Oppo">Oppo</option>
+                                    <option value="Vivo">Vivo</option>
+                                    <option value="Redmi">Redmi</option>
+                                    <option value="Realme">RealMe</option>
+                                    <option value="Techno">Tecno</option>
+                                    <option value="Poco">Poco</option>
+                                    <option value="Itel">Itel</option>
+                                    <option value="Others">Other</option>
+
+
+
+
+                                </select>
+
+                            </div>
+                            <span class="error" id="select-error"></span>
+
+
+                        </div>
+                         <div
+                         class="2input py-2 pl-[0px] w-[100%] || md:pl-[7rem] md:w-[55%]  || xl:pl-0 xl:w-[20%]    ">
+                         <div class="">
+                                <label for="fname" class="text-base ml-2 md:ml-2  uppercase ">Modal Name*</label>
+                                <input type="text" id="mname" name="mname"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3  text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Modal Name" required>
+                            </div>
+
+                        </div>
+                         <div
+                            class="3input py-3 pl-[0px] w-[100%] || md:pl-[7rem] md:w-[55%] md:mb-3 || xl:pl-0 xl:w-[20%] xl:pb-0  ">
+                            <div class="">
+                                <label for="fname" class="text-base ml-2 md:ml-2 uppercase ">Select RAM*</label>
+                                <select name="ram" id="ram"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3  text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[33rem] || xl:w-60 "
+                                    required>
+                                    <option value="">Select</option>
+                                    <option value="2/32">64</option>
+                                    <option value="2/32">128</option>
+                                    <option value="2/32">256</option>
+                                    <option value="2/32">2/32</option>
+                                    <option value="3/32">3/32</option>
+
+                                    <option value="3/64">3/64</option>
+                                    <option value="4/64">4/64</option>
+                                    <option value="6/64">6/64</option>
+                                    <option value="6/128">6/128</option>
+                                    <option value="8/128">8/128</option>
+
+
+
+                                </select>
+                            </div>
+
+                        </div> 
+
+
+                    </div>
+                    <div class="2row   || xl:flex xl:justify-center items-center xl:pt-0 xl:space-x-20  ">
+                        <div
+                            class="4input py-2 pl-[00px] w-[100%] || md:pl-[7rem] md:w-[55%]  || xl:pl-0 xl:w-[20%]   ">
+                            <div class="">
+                                <label for="invoice" class="text-base ml-2 md:ml-2  uppercase ">Phone Amount*</label>
+                                <input type="number" id="pamount" name="pamount"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3  text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Invoice Number" required>
+                            </div>
+
+                        </div>
+                         <div class="1input   pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:pl-0 xl:w-[20%]   ">
+                            <div class="py-2  ">
+                                <label for="fname" class="text-base ml-2 md:ml-2">BILL Photo*</label>
+                                <input type="file" id="bphoto" name="bphoto"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border  border-gray-500 || md:w-[33rem] || xl:w-60 ">
+                            </div>
+
+                        </div>
+                        <div class="2input  pl-[0px] w-[100%] || md:pl-[4rem] md:w-[55%]  || xl:pl-0 xl:w-[20%]   ">
+                            <div class="py-2">
+                                <label for="fname" class="text-base ml-2 md:ml-2">INVOICE NUMBER*</label>
+                                <input type="number" id="inumber" name="inumber"
+                                    class="my-1 w-[250px] py-2 rounded-md px-3    text-base  bg-white border   border-gray-500 || md:w-[33rem] || xl:w-60 "
+                                    placeholder="Enter Invoice Number">
+                            </div>
+
+                        </div> 
+
+                    </div>
+                </div>
+                <div
+                    class="refrence_details  bg-white text-center xl:text-left mt-[1.5rem] pb-[2rem]  xl:mt-[1.5rem] xl:pb-[2rem]">
+                    <p style="color: rgb(2, 2, 71);"
+                        class=" font-bold xl:text-center text-2xl pt-3 text-center uppercase ">
+                        EMI Details :</p>
+                    <div
+                        class="3row items-center md:w-[100%] md:space-x-5 || xl:flex w-[100%] justify-center xl:space-x-0  py-3   xl:ml-0  ">
+                        <div class="xl:w-[10%] ">
+
+                            <p style="color:rgb(2, 2, 71);"
+                                class=" font-bold text-xl xl:text-xl pt-3 uppercase text-center  xl:pt-0  ">Down Payment
+                                :*
+                            </p>
+                        </div>
+
+                        <div
+                            class="1input py-2 pl-0 pr-2 w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%] xl:pt-0   ">
+                            <div
+                                class="space-x-6 ml-5 flex md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0  items-center  ">
+                                <div class="">
+                                    <label for="fdp" class="text-base ml-2 md:ml-2">First DP Amount*</label>
+
+                                    <div class="input">
+
+                                        <input type="number" id="fdown" name="fdown"
+                                            class="my-1 w-28 py-2 rounded-md px-3  text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[33rem] || xl:w-52 "
+                                            placeholder="Fisrt Down Payment " required>
+                                    </div>
+                                </div>
+                                <div class="fddate inline-block">
+                                    <label for="fdp" class="text-base ml-2 md:ml-2">First DP Date*</label>
+
+                                    <div class="flex items-center">
+                                        <input type="date" name="fddate" id="fddate"
+                                            class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  || xl:w-52   "
+                                            placeholder="Select First DP Date" required>
+                                        <i class="fa-regular fa-calendar   relative right-[1.7rem]"></i>
+
+                                    </div>
+                                    <label for="fddate" id="error" class="error"></label>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="2input py-2  w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%] xl:pt-0    ">
+                            <div
+                                class="space-x-6 flex ml-5 md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0 items-center  ">
+                                <div class="">
+                                    <label for="femi" class="text-base ml-2 md:ml-2">Secound DP Amount</label>
+
+                                    <div class="input">
+
+                                        <input type="number" name="sdown" id="sdown"
+                                            class="my-2 py-2  rounded-md px-3  w-28 text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[20rem] || xl:w-52  "
+                                            placeholder="Second Down Payment">
+                                    </div>
+
+                                </div>
+                                <div class="fddate inline-block">
+                                    <label for="semi" class="text-base ml-2 md:ml-2">Secound DP Date</label>
+
+                                    <div class="flex items-center">
+                                        <input type="date" name="sddate" id="sddate"
+                                            class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  ||  xl:w-52  "
+                                            placeholder="Select Secound DP Date">
+                                        <i class="fa-regular fa-calendar   relative right-[1.7rem]"></i>
+
+                                    </div>
+                                    <label for="temi" id="error" class="error"></label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="3row xl:flex w-[100%] justify-center  items-center py-3 xl:w-[100%]  ">
+                        <p style="color: rgb(2,2,71);"
+                            class=" font-bold text-xl xl:text-xl pt-3 uppercase text-center xl:w-[15%] xl:pt-0 ">First
+                            EMI :*</p>
+
+                        <div class="1input py-2  w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%]    ">
+                            <div
+                                class="space-x-6  flex  ml-5 md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0   ">
+                                <div class="">
+
+                                    <input type="number" name="femi" id="femi"
+                                        class="my-2 py-2  rounded-md px-3  w-28 text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[20rem] || xl:w-[15rem]  "
+                                        placeholder=" Enter First EMI" required>
+
+                                </div>
+                                <div class="fddate inline-block">
+                                    <div class="flex items-center">
+                                        <input type="date" name="fdate" id="fdate"
+                                            class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  || xl:w-[15rem]   "
+                                            placeholder="Select First EMI Date" required>
+                                        <i class="fa-regular fa-calendar   relative right-[1.7rem]"></i>
+
+                                    </div>
+                                    <label for="fdate" id="error" class="error"></label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="4row xl:flex w-[100%] justify-center  items-center py-3 xl:w-[100%]   ">
+                        <p style="color: rgb(2,2,71);"
+                            class=" font-bold text-xl xl:text-xl pt-3 uppercase text-center xl:w-[15%] xl:pt-0 ">Second
+                            EMI :*</p>
+
+                        <div class="1input py-2  w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%]    ">
+                            <div
+                                class="space-x-6  flex ml-5 md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0   ">
+                                <div class="">
+
+                                    <input type="number" name="semi" id="semi"
+                                        class="my-2 py-2  rounded-md px-3  w-28 text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[20rem]  || xl:w-[15rem] "
+                                        placeholder=" Enter Second EMI" required>
+                                </div>
+                                <div class="fddate inline-block">
+                                    <div class="flex items-center">
+                                        <input type="date" name="sdate" id="sdate"
+                                            class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  || xl:w-[15rem]   "
+                                            placeholder="Select Secound EMI Date" required>
+                                        <i class="fa-regular fa-calendar   relative right-[1.7rem]"></i>
+
+                                    </div>
+                                    <label for="sdate" id="error" class="error"></label>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="5row xl:flex w-[100%] justify-center  items-center py-3 xl:w-[100%]   ">
+                        <p style="color: rgb(2,2,71);"
+                            class=" font-bold text-xl xl:text-xl pt-3 uppercase text-center xl:w-[15%] ">third EMI :*
+                        </p>
+
+                        <div class="1input py-2  w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%]    ">
+                            <div
+                                class="space-x-6 flex  ml-5 md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0   ">
+                                <div class="">
+
+                                    <input type="number" name="temi" id="temi"
+                                        class="my-2 py-2  rounded-md px-3  w-28 text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[20rem]  || xl:w-[15rem] "
+                                        placeholder=" Enter Third EMI">
+                                </div>
+                                <div class="fddate inline-block">
+                                    <div class="flex items-center">
+                                        <input type="date" name="tdate" id="tdate"
+                                            class="my-2 py-2 rounded-md px-3 w-28 text-base  bg-white border-gray-500 border hover:outline-2  || md:w-[20rem]  || xl:w-[15rem]   "
+                                            placeholder="Select Third EMI Date" required>
+                                        <i class="fa-regular fa-calendar   relative right-[1.7rem]"></i>
+
+                                    </div>
+                                    <label for="tdate" id="error" class="error"></label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="6row xl:flex w-[100%] justify-center  items-center py-3 xl:w-[100%]   ">
+                        <p style="color: rgb(2,2,71);"
+                            class=" font-bold text-xl xl:text-xl pt-3 uppercase text-center xl:w-[15%] ">final price :*
+                        </p>
+
+                        <div class="1input py-2  w-[100%] || md:pl-0 md:w-[100%]  || xl:pl-0  xl:w-[40%]    ">
+                            <div
+                                class=" ml-[5rem] md:space-x-10 md:ml-0 md:flex md:justify-center  xl:space-x-5 xl:ml-0   ">
+                                <div class="">
+
+                                    <input type="number" name="finalamount" id="finalamount"
+                                        class="my-2 py-2  rounded-md px-3  w-28 text-base  bg-white border-gray-500 border hover:outline-2   || md:w-[20rem]  || xl:w-[15rem] "
+                                        placeholder=" Final Price" required>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="7row py-8 text-center xl:flex xl:justify-end  xl:py-5  xl:pt-16 xl:mr-14    ">
+                    <div class=" submit-btn xl:space-x-10">
+                        <a href="form1.html"
+                            class=" f1-btn  text-amber-500 font-bold border-2  relative px-8  xl:px-10 py-[6px] rounded-md  hover:border-2 hover:bg-amber-500 text-lg || ">Back</a>
+
+                        <input type="submit" id="submit"
+                            clzass=" f1-btn  text-amber-500 font-bold border-2 cursor-pointer  relative px-8  xl:px-10 py-[6px] rounded-md  hover:border-2 hover:bg-amber-500 text-lg ||  "
+                            value="Submit">
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+    <script>
+
+        // <--------- navbar  -------->
+        function showmenu() {
+            $('#menu').css({ "left": "0", "width": "270px" });
+        }
+        $('document').ready(function () {
+
+            $('#close-btn').click(function () {
+                $('#menu').css("left", "-272px");
+            })
+
+        })
+
+        // <-------  profile dropdown - ------>
+
+        function MyFunction() {
+            var dropcontent = document.querySelector('.drop-content');
+            dropcontent.classList.toggle('dropdown-toggle');
+        }
+
+        $(document).ready(function () {
+
+
+
+            // <-----   validation  ------>
+
+            config = {
+                enableTime: true,
+                dateFormat: "d-m-y",
+            }
+
+            flatpickr("#fddate,#sddate,#fdate,#sdate,#tdate", {});
+
+            var fddate = 
+
+
+
+            $.validator.addMethod("lettersonly", function (value, element) {
+                return this.optional(element) || /^[a-z]+$/i.test(value);
+            }, "Letters only please");
+
+
+            $("#form").validate({
+
+
+                rules: {
+
+                    bphoto: {
+                        required: true
+
+                    },
+
+                    inumber: {
+                        required: true
+                    },
+
+                    company: {
+                        required: true
+                    },
+
+                    mname: {
+                        required: true
+
+                    },
+
+                    ram: {
+                        required: true
+
+                    },
+
+                    pamount: {
+                        required: true
+                    },
+
+                    fdown: {
+                        required: true
+                    },
+
+                    fddate: {
+                        required: true
+                    },
+                    sdown: {
+                    },
+
+                    sddate: {
+
+                    },
+                    femi: {
+                        required: true
+                    },
+
+                    fdate: {
+                        required: true
+                    },
+                    semi: {
+                        required: true
+                    },
+
+                    sdate: {
+                        required: true
+                    },
+                    temi: {
+                    },
+
+                    tdate: {
+
+                    },
+                    finalamount: {
+                        required: true
+
+                    },
+
+                    // finaldate: {
+                    //     required: true
+                    // },
+
+
+
+
+
+                },
+
+                // highlight: function (element) {
+                //     $(element).addClass("c1");
+                // },
+
+
+                // unhighlight: function (element) {
+                //     $(element).removeClass("c1");
+                // },
+
+                messages: {
+
+                    bphoto: {
+                        required: "Please upload Bill Photo"
+
+                    },
+
+                    inumber: {
+                        required: "Enter Invoice Number"
+                    },
+
+                    company: {
+                        required: "Please Select Company Name "
+                    },
+
+
+
+                    mname: {
+                        required: "Please Enter Modale Name"
+
+                    },
+
+                    ram: {
+                        required: "Please Select RAM"
+
+                    },
+
+
+                    pamount: {
+                        required: "Enter Phone Amount"
+                    },
+
+
+                    fdown: {
+                        required: "Please Enter First Down Payment"
+                    },
+
+                    fddate: {
+                        required: " Select First Down Payment Date"
+                    },
+                    sdown: {
+                        // required: "Please Enter Secound  Down Payment"
+                    },
+
+                    sddate: {
+                        // required: " Select Secound Down Payment Date"
+                    },
+                    femi: {
+                        required: "Enter First EMI Amount"
+                    },
+
+                    fdate: {
+                        required: "Select First EMI Date"
+                    },
+                    semi: {
+                        required: "Enter Secound EMI Amount"
+                    },
+
+                    sdate: {
+                        required: "Select Secound EMI Date"
+                    },
+                    temi: {
+                        required: "Enter Third EMI Amount"
+
+                    },
+
+                    tdate: {
+                        required: "Select Third EMI Date"
+
+                    },
+                    finalamount: {
+                        required: "Enter Final Amount"
+                    },
+
+                    // finaldate: {
+                    //     required: "Select Final Date"
+                    // },
+
+
+
+
+
+                },
+
+                submitHendler: function (form) {
+                    form.submit();
+                }
+
+
+
+
+            });
+
+
+        });
+
+
+                // <--------   date formate set  ------>
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
